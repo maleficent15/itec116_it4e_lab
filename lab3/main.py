@@ -92,5 +92,10 @@ def get_post_then_format_according_to_user(postID: int):
     return data
 
 ############################################################################################################
-## PUT YOUR LAB ACTIVITY 4 ANSWER BELOW
+##      PUT YOUR LAB ACTIVITY 4 ANSWER BELOW
+##      - Create a new API that has the following specs:
+##              Endpoint: /detailed_post/{userID}
+##              Method: GET
+##      - Given the userID, you should show all the post of that specific user and all comments per each post.
+##      - Use necessary key names based on the value to be outputted.
 ############################################################################################################
