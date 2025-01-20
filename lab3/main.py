@@ -99,3 +99,26 @@ def get_post_then_format_according_to_user(postID: int):
 ##      - Given the userID, you should show all the post of that specific user and all comments per each post.
 ##      - Use necessary key names based on the value to be outputted.
 ############################################################################################################
+
+
+from fastapi import FastAPI
+import requests
+
+app = FastAPI()
+
+@app.get("/detailed_post/{userID}")
+def get_detailed_post(userID: int):
+    base_url = "https://jsonplaceholder.typicode.com"
+    user_posts = requests.get(f"{base_url}/posts", params={"userId": userID}).json()
+    detailed_posts = []
+
+    for post in user_posts:
+        comments = requests.get(f"{base_url}/comments", params={"postId": post['id']}).json()
+        detailed_posts.append({
+            "postId": post['id'],
+            "title": post['title'],
+            "body": post['body'],
+            "comments": comments
+        })
+
+    return detailed_posts
